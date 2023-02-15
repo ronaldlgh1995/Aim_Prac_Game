@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table td {
+            border: 1px solid black;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+        }
+        p {
+            font: 30px bold;
+        }
+
+        #totalNum {
+            color: red;
+            font-size: 50px;
+        }
+        #aimArea {
+            width: 80%;
+            position: relative;
+            float: left;
+        }
+        table {
+            width: 80%;
+            margin-right: 0px;
+        }
+        #countArea {
+            position: relative;
+            float: left;
+            border: 1px solid black;
+            padding: 30px 30px;
+        }
+    </style>
+</head>
+<body>
+    <hr/>
+    <hr/>
+    <div id="main">
+        <div id="aimArea">
+        <table>
+            <tr>
+                <td onclick="shoot('1A')" id="1A"></td>
+                <td onclick="shoot('1B')" id="1B"></td>
+                <td onclick="shoot('1C')" id="1C"></td>
+                <td onclick="shoot('1D')" id="1D"></td>
+                <td onclick="shoot('1E')" id="1E"></td>
+                <td onclick="shoot('1F')" id="1F"></td>
+                <td onclick="shoot('1G')" id="1G"></td>
+                <td onclick="shoot('1H')" id="1H"></td>
+                <td onclick="shoot('1I')" id="1I"></td>
+                <td onclick="shoot('1J')" id="1J"></td>
+            </tr>
+            <tr>
+                <td onclick="shoot('2A')" id="2A"></td>
+                <td onclick="shoot('2B')" id="2B"></td>
+                <td onclick="shoot('2C')" id="2C"></td>
+                <td onclick="shoot('2D')" id="2D"></td>
+                <td onclick="shoot('2E')" id="2E"></td>
+                <td onclick="shoot('2F')" id="2F"></td>
+                <td onclick="shoot('2G')" id="2G"></td>
+                <td onclick="shoot('2H')" id="2H"></td>
+                <td onclick="shoot('2I')" id="2I"></td>
+                <td onclick="shoot('2J')" id="2J"></td>
+            </tr>
+            <tr>
+                <td onclick="shoot('3A')" id="3A"></td>
+                <td onclick="shoot('3B')" id="3B"></td>
+                <td onclick="shoot('3C')" id="3C"></td>
+                <td onclick="shoot('3D')" id="3D"></td>
+                <td onclick="shoot('3E')" id="3E"></td>
+                <td onclick="shoot('3F')" id="3F"></td>
+                <td onclick="shoot('3G')" id="3G"></td>
+                <td onclick="shoot('3H')" id="3H"></td>
+                <td onclick="shoot('3I')" id="3I"></td>
+                <td onclick="shoot('3J')" id="3J"></td>
+            </tr>
+            <tr>
+                <td onclick="shoot('4A')" id="4A"></td>
+                <td onclick="shoot('4B')" id="4B"></td>
+                <td onclick="shoot('4C')" id="4C"></td>
+                <td onclick="shoot('4D')" id="4D"></td>
+                <td onclick="shoot('4E')" id="4E"></td>
+                <td onclick="shoot('4F')" id="4F"></td>
+                <td onclick="shoot('4G')" id="4G"></td>
+                <td onclick="shoot('4H')" id="4H"></td>
+                <td onclick="shoot('4I')" id="4I"></td>
+                <td onclick="shoot('4J')" id="4J"></td>
+            </tr>
+            <tr>
+                <td onclick="shoot('5A')" id="5A"></td>
+                <td onclick="shoot('5B')" id="5B"></td>
+                <td onclick="shoot('5C')" id="5C"></td>
+                <td onclick="shoot('5D')" id="5D"></td>
+                <td onclick="shoot('5E')" id="5E"></td>
+                <td onclick="shoot('5F')" id="5F"></td>
+                <td onclick="shoot('5G')" id="5G"></td>
+                <td onclick="shoot('5H')" id="5H"></td>
+                <td onclick="shoot('5I')" id="5I"></td>
+                <td onclick="shoot('5J')" id="5J"></td>
+            </tr>
+            <tr>
+                <td onclick="shoot('6A')" id="6A"></td>
+                <td onclick="shoot('6B')" id="6B"></td>
+                <td onclick="shoot('6C')" id="6C"></td>
+                <td onclick="shoot('6D')" id="6D"></td>
+                <td onclick="shoot('6E')" id="6E"></td>
+                <td onclick="shoot('6F')" id="6F"></td>
+                <td onclick="shoot('6G')" id="6G"></td>
+                <td onclick="shoot('6H')" id="6H"></td>
+                <td onclick="shoot('6I')" id="6I"></td>
+                <td onclick="shoot('6J')" id="6J"></td>
+            </tr>
+            
+        </table>
+
+    </div>
+    </div>
+    
+    <div id="countArea">
+        <p>Total: <span id="totalNum"></span></p>
+        <button onclick="aimPrac()">Start</button>
+        <button onclick="stop()">Stop</button>
+        <select id="speed">
+            <option value="1000">Slow</option>
+            <option value="500">Moderate</option>
+            <option value="300">Fast</option>
+        </select>
+        <br/>
+       <!-- <span id="popList"></span>  -->
+    </div>    
+    
+</body>
+<script>
+
+    var aimSchedule;
+    function aimPrac() {
+        var speed = document.getElementById("speed").value
+        aimSchedule = setInterval(colorful,speed)
+    }
+    var blue = [];
+    function colorful() {
+        var num = Math.floor(Math.random() * 6) + 1;
+        var vList = "ABCDEFGHIJ"
+        var vNum = Math.floor(Math.random() * 10);
+        var v = vList[vNum]
+        var popTd = num + v
+        var target = document.getElementById(popTd);
+        target.style.backgroundColor= "blue"
+        blue.push(popTd)
+        var popList = document.getElementById("popList")
+        popList.innerHTML = blue
+    }
+
+    //function cleaning() {
+    //    var num = Math.floor(Math.random() * 12) + 1;
+    //    var target = document.getElementById(num);
+    //   target.style.backgroundColor= "white"
+    //}
+
+    var totalNum = 1
+    function shoot(rdName) {
+        var target = document.getElementById(rdName);
+        
+        var attacked = blue.includes(rdName)
+        if (attacked == true) {
+            var ind = blue.indexOf(rdName)
+            blue.splice(ind,1)
+            target.style.backgroundColor= "white"
+            var total = document.getElementById("totalNum")
+            total.innerHTML = totalNum
+            totalNum = totalNum + 1
+
+        }   
+
+    }
+
+    function stop() {
+        clearInterval(aimSchedule)
+    }
+</script>
+</html>
